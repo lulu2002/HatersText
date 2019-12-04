@@ -168,6 +168,7 @@ let emotes = ["\uD83D\uDE00",
     "\ud83d\udcaa",
     "\ud83e\uddb5",
     "\ud83e\uddb6",
-    "\ud83d\udd95"
-
+    "\ud83d\udd95",
+    "💦",
+    "🔥"
 ];
