@@ -21,6 +21,11 @@ body {
     width: 20vw;
 }
 
+#trans-button {
+    font-size: 30px;
+    padding: 1%;
+}
+
 @media (max-width: 1000px) {
     #text {
         flex-direction: column;
@@ -28,5 +33,6 @@ body {
 
     .text-input {
         width: 80vw;
+        font-size: 30px;
     }
 }
