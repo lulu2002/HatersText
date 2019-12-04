@@ -1,0 +1,32 @@
+/**
+ * 2019-12-04 下午 11:01
+ */
+
+body {
+    text-align: center;
+    font-family: 微軟正黑體;
+}
+
+#text {
+    display: flex;
+    justify-content: center;
+}
+
+#input, #output {
+    padding: 0px 2%;
+}
+
+.text-input {
+    height: 180px;
+    width: 20vw;
+}
+
+@media (max-width: 1000px) {
+    #text {
+        flex-direction: column;
+    }
+
+    .text-input {
+        width: 80vw;
+    }
+}
