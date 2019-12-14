@@ -39,7 +39,7 @@ function replaceFirstSpaceToEmotes(inputString) {
     if (mode == "emoji")
         emoteString = getRandomAmountEmoteString(emotes, 3);
     else if (mode == "text")
-        emoteString = getRandomAmountEmoteString(textEmotes, 1);
+        emoteString = " " + getRandomAmountEmoteString(textEmotes, 1) + " ";
 
     return inputString.replace(PREFIX, emoteString);
 }
