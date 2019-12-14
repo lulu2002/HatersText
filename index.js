@@ -1,6 +1,8 @@
 /**
  * 2019-12-04 下午 11:07
  */
+const PREFIX = "[]/*-23";
+
 document.getElementById("trans-button").addEventListener("click", ev => {
     transText();
 });
@@ -15,7 +17,7 @@ function transText() {
 function transStringToEmoteString(inputString) {
     inputString = replaceAllToSpace(inputString);
 
-    while (inputString.indexOf(" ") != -1)
+    while (inputString.indexOf(PREFIX) != -1)
         inputString = replaceFirstSpaceToEmotes(inputString);
 
     return inputString;
@@ -23,18 +25,28 @@ function transStringToEmoteString(inputString) {
 
 
 function replaceAllToSpace(inputString) {
-    return inputString.replace(/，/g, " ")
-        .replace(/。/g, " ")
-        .replace(/,/g, " ");
+    return inputString
+        .replace(/ /g, PREFIX)
+        .replace(/，/g, PREFIX)
+        .replace(/。/g, PREFIX)
+        .replace(/,/g, PREFIX);
 }
 
 function replaceFirstSpaceToEmotes(inputString) {
-    return inputString.replace(" ", getRandomAmountEmoteString());
+    let mode = document.getElementById("emote-mode").value;
+    let emoteString;
+
+    if (mode == "emoji")
+        emoteString = getRandomAmountEmoteString(emotes, 3);
+    else if (mode == "text")
+        emoteString = getRandomAmountEmoteString(textEmotes, 1);
+
+    return inputString.replace(PREFIX, emoteString);
 }
 
-function getRandomAmountEmoteString() {
-    let randomAmount = Math.floor(Math.random() * 3 + 1);
-    let emote = emotes[Math.floor(Math.random() * emotes.length)];
+function getRandomAmountEmoteString(emoteArr, maxAmount) {
+    let randomAmount = Math.floor(Math.random() * maxAmount + 1);
+    let emote = emoteArr[Math.floor(Math.random() * emoteArr.length)];
     let str = "";
 
     for (let i = 0; i < randomAmount; i++)
@@ -43,7 +55,63 @@ function getRandomAmountEmoteString() {
     return str;
 }
 
-let emotes = ["\uD83D\uDE00",
+let textEmotes = [
+    "( ≧Д≦)",
+    "(；￣Д￣）",
+    "(;¬_¬)",
+    "（；¬＿¬)",
+    "(｡+･`ω･´)",
+    "｡゜(｀Д´)゜｡",
+    "(　ﾟДﾟ)＜!!",
+    "(‡▼益▼)",
+    "(,,#ﾟДﾟ)",
+    "(҂⌣̀_⌣́)",
+    "(；¬д¬)",
+    "（;≧皿≦）",
+    "(╬ﾟ◥益◤ﾟ)",
+    "(╬⓪益⓪)",
+    "[○･｀Д´･○]",
+    "૮( ᵒ̌▱๋ᵒ̌ )ა",
+    "(⁎˃ᆺ˂)",
+    "(ꐦ°᷄д°᷅)",
+    "((╬●∀●)",
+    "(╬ Ò ‸ Ó)",
+    "( >д<)",
+    "(*｀益´*)",
+    "(☞◣д◢)☞",
+    "<(｀^´)>",
+    "(;｀O´)o",
+    "(ꐦ ಠ皿ಠ )",
+    "（｀Δ´）！",
+    "(*｀Ω´*)",
+    "(╬ಠ益ಠ)",
+    "(╬ﾟ◥益◤ﾟ) ╬ﾟ",
+    "(ு⁎ு)྆྆",
+    "(╬⓪益⓪)",
+    "（╬ಠ益ಠ)",
+    "(●o≧д≦)o",
+    "=͟͟͞͞( •̀д•́)))",
+    "(๑･`▱´･๑)",
+    "༼ つ ͠° ͟ ͟ʖ ͡° ༽つ",
+    "(☄ฺ◣д◢)☄ฺ",
+    "ꀯ(‴ꑒ᷅⺫ꑒ᷄)",
+    "(#｀皿´)",
+    "(｀Д´)",
+    "(ﾒﾟ皿ﾟ)",
+    "(o｀ﾟ皿ﾟ)",
+    "( ╬◣ 益◢)",
+    "（╬ಠ益ಠ)",
+    "（♯▼皿▼）",
+    "( ╬◣ 益◢）y━･~",
+    "（○｀Ｏ´○）",
+    "(; ･`д･´)",
+    "｜。｀＞Д＜｜",
+    "(; ･`д･´)​",
+    "( •̀ω•́ )σ",
+];
+
+let emotes = [
+    "\uD83D\uDE00",
     "\uD83D\uDE01",
     "\uD83D\uDE02",
     "\uD83E\uDD23",
